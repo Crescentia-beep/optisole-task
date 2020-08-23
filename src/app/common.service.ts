@@ -10,14 +10,18 @@ const host = 'http://54.202.218.249:9501';
 export class CommonService {
 
   constructor(private http: HttpClient) { }
-  getresult(url): Observable<any> {
+  get(url): Observable<any> {
     return this.http.get(host + url);
   }
 
   delete(url): Observable<any> {
     return this.http.delete(host + url);
   }
-  postresult(url, data): Observable<any> {
+  post(url, data): Observable<any> {
     return this.http.post(host + url, data);
+  }
+
+  put(url, data): Observable<any> {
+    return this.http.put(host + url, data);
   }
 }

@@ -1,184 +1,164 @@
 <div class="container">
     <div class="register col-md-5 col-sm-6">
-           <h1 class="title"><strong>Bio Data</strong>
-           </h1>
-           
-           
-           <form role="form" #Signup="ngForm" name="Signup" (ngSubmit)="onSubmit(Signup)">
-               <div class="form-group">
-               <label class="reg_txt">Name <span>*</span></label>
-                   <div class="controls form-inline">       
-                     <input type="text" name="username" id="username" [(ngModel)]="signup.username" #username="ngModel"
-                     required pattern="^[a-zA-Z]*$" class="input-name form-control col-6" placeholder="First">
-                     <input type="text"  name="lname" id="lname" [(ngModel)]="signup.lname" #lname="ngModel"
-                     required pattern="^[a-zA-Z]*$" class="input-name form-control col-6" placeholder="Last">
-                      </div> 
-                      <span *ngIf="username.errors && (username.dirty || username.touched || submitted)" class="col-12">
-                        <span [hidden]="!username.errors.required" class="error text-left">
-                            Firstname is required</span>
-                        <span [hidden]="!username.errors.pattern" class="error text-left">
-                            Only String is acceptable</span>
-                        </span> 
-                        <span *ngIf="lname.errors && (lname.dirty || lname.touched || submitted)" class="col-12 ">
-                            <span [hidden]="!lname.errors.required" class="error text-left">
-                                Lastname is required</span>
-                            <span [hidden]="!lname.errors.pattern" class="error text-left">
-                                Only String is acceptable</span>
-                            </span>                       
-               </div>
-               <div class="clearfix"></div>
-               
-               <div class="form-group">
-               <label class="reg_txt">Email  <span>*</span></label>
-                   <input type="text" id="email" name="email" [(ngModel)]="signup.email" #email="ngModel"
-                   required pattern="([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" class="form-register text form-control" id="" placeholder="E-mail">
-                   <span *ngIf="email.errors && (email.dirty || email.touched || submitted)">
-                    <span [hidden]="!email.errors.required" class="error text-left">
-                        Email is required</span>
-                    <span [hidden]="!email.errors.pattern" class="error text-left">
-                        Enter a valid email id</span>
-                   </span>
-                </div>
-               <div class="clearfix"></div>
-               
-               <div class="form-group" style="height:70px;">
-               <label class="reg_txt">Phone Number  <span>*</span></label>
-                   <div class="clearfix"></div>
-                  <div class="form-group">
-                       <input type="text" class="text input-name1 form-control"  id="phone" name="phone" [(ngModel)]="signup.phone" #phone="ngModel"
-                       required pattern="^[0-9]{10}$">
-                       <span *ngIf="phone.errors && (phone.dirty || phone.touched || submitted)">
-                        <span [hidden]="!phone.errors.required" class="error text-left">
-                            Phone number is required</span>
-                        <span [hidden]="!phone.errors.pattern" class="error text-left">
-                            Enter a valid Phone number</span>
-                       </span>
-                  </div>
-                 
-                  
-               </div>
-               
-               <div class="clearfix"></div>
-               
-               <div class="form-group">
-               <label class="reg_txt">Address  <span>*</span></label>
-                   <input type="text" id="line1" name="line1" [(ngModel)]="signup.line1" #line1="ngModel"
-                   required pattern="^[a-zA-Z0-9\s,'-]*$" class="form-register form-control text"  placeholder="Line 1" style="margin-bottom:15px;">
-                   <span *ngIf="line1.errors && (line1.dirty || line1.touched || submitted)">
-                    <span [hidden]="!line1.errors.required" class="error text-left">
-                        Line 1 is required</span>
-                    <span [hidden]="!line1.errors.pattern" class="error text-left">
-                        Enter a valid address</span>
-                   </span>
-                   <input type="text" id="line2" name="line2" [(ngModel)]="signup.line2" #line2="ngModel"
-                   required pattern="^[a-zA-Z0-9\s,'-]*$" class="form-register form-control text"  placeholder="Line 2">
-                   <span *ngIf="line2.errors && (line2.dirty || line2.touched || submitted)">
-                    <span [hidden]="!line2.errors.required" class="error text-left">
-                        Line 2 is required</span>
-                    <span [hidden]="!line2.errors.pattern" class="error text-left">
-                        Enter a valid address</span>
-                   </span>
-               </div>
-               
-               <div class="form-group">                    
-                   <div class="controls form-inline">       
-                     <input type="text" class="input-name form-control col-6" placeholder="City"  name="city" id="city" [(ngModel)]="signup.city" #city="ngModel"
-                     required pattern="^[a-zA-Z0-9]*$" >
-                     
-                     <input type="text" class="input-name form-control col-6" placeholder="State" name="state" id="city" [(ngModel)]="signup.state" #state="ngModel"
-                     required pattern="^[a-zA-Z0-9]*$" >
-                     <span *ngIf="city.errors && (city.dirty || city.touched || submitted)">
-                        <span [hidden]="!city.errors.required" class="error text-left">
-                            City is required</span>
-                        <span [hidden]="!city.errors.pattern" class="error text-left">
-                            Enter a valid city name</span>
-                       </span>
-                       <span *ngIf="state.errors && (state.dirty || state.touched || submitted)" class="col-12">
-                        <span [hidden]="!state.errors.required" class="error text-left">
-                            State is required</span>
-                        <span [hidden]="!state.errors.pattern" class="error text-left">
-                            Enter a valid state name</span>
-                       </span>
-                      </div>                        
-               </div>
-               
-               <div class="form-group">                    
-                   <div class="controls form-inline">       
-                     <input type="text" class="input-name form-control col-6" placeholder="Zip Code"  name="zip" id="zip" [(ngModel)]="signup.zip" #zip="ngModel"
-                     required pattern="^[1-9][0-9]{5}$">
-                     <input type="text" class="input-name form-control col-6" placeholder="Country" name="country" id="country" [(ngModel)]="signup.country" #country="ngModel"
-                     required pattern="^[a-zA-Z0-9]*$">
-                     <span *ngIf="zip.errors && (zip.dirty || zip.touched || submitted)">
-                        <span [hidden]="!zip.errors.required" class="error text-left">
-                            zip is required</span>
-                        <span [hidden]="!zip.errors.pattern" class="error text-left">
-                            Enter a valid Zip code</span>
-                       </span>
-                       <span *ngIf="country.errors && (country.dirty || country.touched || submitted)">
-                        <span [hidden]="!country.errors.required" class="error text-left">
-                            Country is required</span>
-                        <span [hidden]="!country.errors.pattern" class="error text-left">
-                            Enter a valid Country name</span>
-                       </span>
-                      </div>                        
-               </div>
-               
-               <div class="form-group">
-               <label class="reg_txt">Write Your qualification <span>*</span></label>
-                   <input type="text"  name="qualification" id="qualification" [(ngModel)]="signup.qualification" #qualification="ngModel"
-                   required pattern="^[ A-Za-z_().-]*$" class="form-register text form-control"  placeholder="Bsc(cs)" style="margin-bottom:15px;">
-                   <span *ngIf="qualification.errors && (qualification.dirty || qualification.touched || submitted)">
-                    <span [hidden]="!qualification.errors.required" class="error text-left">
-                        Qualification is required</span>
-                    <span [hidden]="!qualification.errors.pattern" class="error text-left">
-                        Enter a valid Qualification</span>
-                   </span>
-               </div>
-               
-               
-               <div class="clearfix"></div>
-               
-               <div class="form-group">
-               <label class="reg_txt">Comment  <span>*</span></label>                        
-                   <textarea class="form-register text" name="comment" id="comment" [(ngModel)]="signup.comment" #comment="ngModel"
-                   required maxlength="120"></textarea>
-                   <span *ngIf="comment.errors && (comment.dirty || comment.touched || submitted)">
-                    <span [hidden]="!comment.errors.required" class="error text-left">
-                        Comment is required</span>
-                    <span [hidden]="!comment.errors.maxlength" class="error text-left">
-                        Only 120 characters accepted</span>
-                   </span>
-               </div>
-               
-               <div class="form-group">
-                   <button type="submit" class="btn btn-primary submit" style="width:97%;">Submit</button>
-               </div>
-           </form>
-        
-   </div>
-   
-   <div class="col-md-6 tabt">
-       <table class="table">
-
-     <tbody>
-     <tr class="ztxt">
- <th>Name</th>
- <th>Email</th>
- <th>Phone</th>
- <th>Edit</th>
- <th>Delete</th>
- <th>View</th>
- </tr>
-<tr>
- <td>Joe</td>
- <td>J@Info.com</td>
- <td>2323456</td>
- <td><button class="ed">Edit</button></td>
- <td><button class="ed" style="background:#f00;">Delete</button></td>
- <td><button class="ed" >View</button></td>
-</tr>
-</tbody>
-</table>
-   </div>
-  
-</div>
+      <h1 class="title"><strong>Bio Data</strong>
+      </h1>
+      <form role="form" #UserDetails="ngForm" name="UserDetails" (ngSubmit)="onSubmit(UserDetails)">
+      <div class="form-group">
+        <label class="reg_txt">Name <span>*</span></label>
+        <div class="controls form-inline">       
+          <input type="text" name="firstName" id="firstName" [(ngModel)]="signup.firstName" #firstName="ngModel"
+          required pattern="^[a-zA-Z]*$" class="input-name form-control col-6" placeholder="First">
+          <input type="text"  name="lastName" id="lastName" [(ngModel)]="signup.lastName" #lastName="ngModel"
+          required pattern="^[a-zA-Z]*$" class="input-name form-control col-6" placeholder="Last Name">
+        </div>
+        <span *ngIf="firstName.errors && (firstName.dirty || firstName.touched || submitted)" class="col-12">
+        <span [hidden]="!firstName.errors.required" class="error text-left">
+        Firstname is required</span>
+        <span [hidden]="!firstName.errors.pattern" class="error text-left">
+        Only String is acceptable</span>
+        </span> 
+        <span *ngIf="lastName.errors && (lastName.dirty || lastName.touched || submitted)" class="col-12 ">
+        <span [hidden]="!lastName.errors.required" class="error text-left">
+        Lastname is required</span>
+        <span [hidden]="!lastName.errors.pattern" class="error text-left">
+        Only String is acceptable</span>
+        </span>                       
+      </div>
+      <div class="clearfix"></div>
+      <div class="form-group">
+        <label class="reg_txt">Email  <span>*</span></label>
+        <input type="text" id="email" name="email" [(ngModel)]="signup.email" #email="ngModel"
+        required pattern="([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" class="form-register text form-control" id="" placeholder="E-mail">
+        <span *ngIf="email.errors && (email.dirty || email.touched || submitted)">
+        <span [hidden]="!email.errors.required" class="error text-left">
+        Email is required</span>
+        <span [hidden]="!email.errors.pattern" class="error text-left">
+        Enter a valid email id</span>
+        </span>
+      </div>
+      <div class="clearfix"></div>
+      <div class="form-group" style="height:70px;">
+        <label class="reg_txt">Phone Number  <span>*</span></label>
+        <div class="clearfix"></div>
+        <div class="form-group">
+          <input type="text" class="text input-name1 form-control"  id="phoneNumber" name="phoneNumber" [(ngModel)]="signup.phoneNumber" #phoneNumber="ngModel"
+          required pattern="^[0-9]{10}$">
+          <span *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched || submitted)">
+          <span [hidden]="!phoneNumber.errors.required" class="error text-left">
+          Phone number is required</span>
+          <span [hidden]="!phoneNumber.errors.pattern" class="error text-left">
+          Enter a valid Phone number</span>
+          </span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="form-group">
+        <label class="reg_txt">Address  <span>*</span></label>
+        <input type="text" id="address1" name="address1" [(ngModel)]="signup.address1" #address1="ngModel"
+        required pattern="^[a-zA-Z0-9\s,'-]*$" class="form-register form-control text"  placeholder="Line 1" style="margin-bottom:15px;">
+        <span *ngIf="address1.errors && (address1.dirty || address1.touched || submitted)">
+        <span [hidden]="!address1.errors.required" class="error text-left">
+        Line 1 is required</span>
+        <span [hidden]="!address1.errors.pattern" class="error text-left">
+        Enter a valid address</span>
+        </span>
+        <input type="text" id="address2" name="address2" [(ngModel)]="signup.address2" #address2="ngModel"
+        required pattern="^[a-zA-Z0-9\s,'-]*$" class="form-register form-control text"  placeholder="Line 2">
+        <span *ngIf="address2.errors && (address2.dirty || address2.touched || submitted)">
+        <span [hidden]="!address2.errors.required" class="error text-left">
+        Line 2 is required</span>
+        <span [hidden]="!address2.errors.pattern" class="error text-left">
+        Enter a valid address</span>
+        </span>
+      </div>
+      <div class="form-group">
+        <div class="controls form-inline">       
+          <input type="text" class="input-name form-control col-6" placeholder="City"  name="city" id="city" [(ngModel)]="signup.city" #city="ngModel"
+          required pattern="^[a-zA-Z0-9]*$" >
+          <input type="text" class="input-name form-control col-6" placeholder="State" name="state" id="city" [(ngModel)]="signup.state" #state="ngModel"
+          required pattern="^[a-zA-Z0-9]*$" >
+          <span *ngIf="city.errors && (city.dirty || city.touched || submitted)">
+          <span [hidden]="!city.errors.required" class="error text-left">
+          City is required</span>
+          <span [hidden]="!city.errors.pattern" class="error text-left">
+          Enter a valid city name</span>
+          </span>
+          <span *ngIf="state.errors && (state.dirty || state.touched || submitted)" class="col-12">
+          <span [hidden]="!state.errors.required" class="error text-left">
+          State is required</span>
+          <span [hidden]="!state.errors.pattern" class="error text-left">
+          Enter a valid state name</span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="controls form-inline">       
+          <input type="text" class="input-name form-control col-6" placeholder="Zip Code"  name="zipCode" id="zipCode" [(ngModel)]="signup.zipCode" #zipCode="ngModel"
+          required pattern="^[1-9][0-9]{5}$">
+          <input type="text" class="input-name form-control col-6" placeholder="Country" name="country" id="country" [(ngModel)]="signup.country" #country="ngModel"
+          required pattern="^[a-zA-Z0-9]*$">
+          <span *ngIf="zipCode.errors && (zipCode.dirty || zipCode.touched || submitted)">
+          <span [hidden]="!zipCode.errors.required" class="error text-left">
+          zipCode is required</span>
+          <span [hidden]="!zipCode.errors.pattern" class="error text-left">
+          Enter a valid Zip code</span>
+          </span>
+          <span *ngIf="country.errors && (country.dirty || country.touched || submitted)">
+          <span [hidden]="!country.errors.required" class="error text-left">
+          Country is required</span>
+          <span [hidden]="!country.errors.pattern" class="error text-left">
+          Enter a valid Country name</span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="reg_txt">Write Your qualification <span>*</span></label>
+        <input type="text"  name="qualification" id="qualification" [(ngModel)]="signup.qualification" #qualification="ngModel"
+        required pattern="^[ A-Za-z_().-]*$" class="form-register text form-control"  placeholder="Bsc(cs)" style="margin-bottom:15px;">
+        <span *ngIf="qualification.errors && (qualification.dirty || qualification.touched || submitted)">
+        <span [hidden]="!qualification.errors.required" class="error text-left">
+        Qualification is required</span>
+        <span [hidden]="!qualification.errors.pattern" class="error text-left">
+        Enter a valid Qualification</span>
+        </span>
+      </div>
+      <div class="clearfix"></div>
+      <div class="form-group">
+        <label class="reg_txt">Comment  <span>*</span></label>                        
+        <textarea class="form-register text" name="comments" id="comments" [(ngModel)]="signup.comments" #comments="ngModel"
+        required maxlength="120"></textarea>
+        <span *ngIf="comments.errors && (comments.dirty || comments.touched || submitted)">
+        <span [hidden]="!comments.errors.required" class="error text-left">
+        Comment is required</span>
+        <span [hidden]="!comments.errors.maxlength" class="error text-left">
+        Only 120 characters accepted</span>
+        </span>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary submit" style="width:97%;">Submit</button>
+      </div>
+      </form>
+    </div>
+    <div class="col-md-6 tabt">
+      <table class="table">
+        <tbody>
+          <tr class="ztxt">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>View</th>
+          </tr>
+          <tr *ngFor="let userRow of userResult">
+            <td>{{userRow.firstName}}</td>
+            <td>{{userRow.email}}</td>
+            <td>{{userRow.phoneNumber}}</td>
+            <td><button (click)="getUserDetailsToUpdate(userRow._id)" class="ed">Edit</button></td>
+            <td><button (click)="deleteUser(userRow._id)" class="ed" style="background:#f00;">Delete</button></td>
+            <td><button class="ed" (click)="viewUserDetails(userRow._id)">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -12,55 +12,73 @@ export class SignupComponent implements OnInit {
  
   constructor(private service:CommonService) { }
   public signup: any = {
-   lname:'',
-    username: '',
-    line1:'',
-    line2:'',
+    firstName: '',
+    lastName:'',    
     email:'',
-    phone:'',
+    phoneNumber:'',
+    address1:'',
+    address2:'',
     city:'',
     state:'',
-    zip:'',
+    zipCode:'',
     country:'',
     qualification:'',
-    comment:''
+    comments:''
   }
+
+  // User id to which the details to be updated
+  public userId = null;
+
+  // All user result
+  public userResult : JSON;
   ngOnInit(): void {
-    
+    this.loadUsers();
   }
-  onSubmit(Signup: any) {
+  onSubmit(UserDetails: any) {
     this.submitted = true;
-    if (Signup.invalid) {
+    if (UserDetails.invalid) {
       return;
     }
-    var datas = {
-      firstName: this.signup.username,
-      lastName:this.signup.lname,
-      email: this.signup.email,
-      phoneNumber: this.signup.phone,
-      address1:this.signup.line1,
-      address2:this.signup.line2,
-      city:this.signup.city,
-      state:this.signup.state,
-      zipCode:this.signup.zip,
-      country:this.signup.country,
-      qualification:this.signup.qualification,
-      comments:this.signup.comment    
+    if(this.userId){
+      this.updateUser(this.signup)
     }
-    console.log('hello', datas)
-    this.service.postresult('/api/users', datas).subscribe(res => {
-      console.log('yes', res)
-      
-        window.alert('user added successfully');
+    else{
+      this.addUser(this.signup)
+    }
+  }
 
-        
+  addUser(datas : object){
+    this.service.post('/api/users/', datas).subscribe(res => {
+      alert('User details added successfully')
+    })
+  }
 
-      
-      // else if (res.status == false) {
-      //   alert(res.message);
-      //   Signup.resetForm();
-      // }
-  })
+  updateUser(data : object){
+    if(!this.userId){
+      alert('User id is not valid')
+    }
+    this.service.put('/api/users/' + this.userId, data).subscribe(res => {
+      alert('User details updated successfully')
+    })
+  }
 
-}
+  getUserDetailsToUpdate(userId: String) {
+    this.service.get('/api/users/'+userId).subscribe(res => {
+      this.userId = userId;
+      this.signup = res;
+    })
+  }
+
+  deleteUser(userId: String) {
+    this.service.delete('/api/users/'+userId).subscribe(res => {
+      alert('User deleted successfully')
+      this.loadUsers();
+    })
+  }
+
+  loadUsers(){
+    this.service.get('/api/users/').subscribe(res => {
+      this.userResult = res;
+    })
+  }
 }
